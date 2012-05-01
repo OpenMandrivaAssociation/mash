@@ -9,7 +9,7 @@
 Summary:	A library for using real 3D models within a Clutter scene
 Name:		mash
 Version:	0.2.0
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://wiki.clutter-project.org/wiki/Mash
@@ -47,7 +47,6 @@ lighting model with animatable lights.
 %package -n %{girname}
 Summary:	GObject Introspection interface description for %{name}
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
@@ -56,6 +55,7 @@ GObject Introspection interface description for %{name}.
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
