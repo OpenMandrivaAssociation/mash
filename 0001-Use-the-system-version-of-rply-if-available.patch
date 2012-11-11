@@ -1,0 +1,59 @@
+diff -up ./configure.ac.use-system-rply ./configure.ac
+--- ./configure.ac.use-system-rply	2011-09-12 19:21:48.000000000 +0300
++++ ./configure.ac	2011-09-22 19:58:01.261676420 +0300
+@@ -78,6 +78,20 @@ AS_IF([test "x$have_mx" = "xno"],
+ 
+ AM_CONDITIONAL([HAVE_MX], [test "x$have_mx" = "xyes"])
+ 
++dnl Prefer the system version of rply if available
++AC_CHECK_HEADER([rply/rply.h], [have_rply=yes], [have_rply=no])
++
++if test x$have_rply = "xno"; then
++        AC_MSG_NOTICE([rply was not found. Using internal copy])
++else
++        RPLY_CFLAGS=""
++        RPLY_LIBS="-lrply"
++        AC_SUBST(RPLY_CFLAGS)
++        AC_SUBST(RPLY_LIBS)
++fi
++
++AM_CONDITIONAL([USE_INTERNAL_RPLY], [test "x$have_rply" = "xno"])
++
+ # prefixes for fixing gtk-doc references
+ CLUTTER_PREFIX="`$PKG_CONFIG --variable=prefix clutter-1.0`"
+ AC_SUBST(CLUTTER_PREFIX)
+diff -up ./mash/Makefile.am.use-system-rply ./mash/Makefile.am
+--- ./mash/Makefile.am.use-system-rply	2011-09-12 19:08:11.000000000 +0300
++++ ./mash/Makefile.am	2011-09-22 20:00:03.136152776 +0300
+@@ -1,4 +1,6 @@
++if USE_INTERNAL_RPLY
+ SUBDIRS = rply
++endif
+ 
+ lib_LTLIBRARIES = libmash-@MASH_API_VERSION@.la
+ 
+@@ -7,6 +9,7 @@ INCLUDES = \
+ 
+ AM_CPPFLAGS = \
+ 	-DMASH_COMPILATION=1 \
++	@RPLY_CFLAGS@ \
+ 	@CLUTTER_CFLAGS@
+ 
+ enum_h = \
+@@ -68,8 +71,15 @@ libmash_@MASH_API_VERSION@_la_LDFLAGS =
+ 	-version-info "@MASH_LT_CURRENT@:@MASH_LT_REVISION@:@MASH_LT_AGE@"
+ 
+ libmash_@MASH_API_VERSION@_la_LIBADD = \
+-	@CLUTTER_LIBS@ \
++	@CLUTTER_LIBS@
++
++if USE_INTERNAL_RPLY
++libmash_@MASH_API_VERSION@_la_LIBADD += \
+ 	rply/librply.la
++else
++libmash_@MASH_API_VERSION@_la_LIBADD += \
++	@RPLY_LIBS@
++endif
+ 
+ CLEANFILES =
+ 
