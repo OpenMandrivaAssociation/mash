@@ -91,3 +91,14 @@ autoreconf -vf
 %{_libdir}/pkgconfig/%{name}-%{api}.pc
 %{_datadir}/gir-1.0/Mash-%{gir_major}.gir
 
+
+
+%changelog
+* Tue May 01 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.2.0-2
++ Revision: 794831
+- rebuild for clutter and typelib
+
+* Tue Mar 13 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.2.0-1
++ Revision: 784767
+- imported package mash
+
