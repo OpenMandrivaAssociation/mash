@@ -7,7 +7,7 @@
 Summary:	A library for using real 3D models within a Clutter scene
 Name:		mash
 Version:	0.2.0
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://wiki.clutter-project.org/wiki/Mash
