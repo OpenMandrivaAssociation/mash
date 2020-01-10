@@ -62,7 +62,7 @@ development of programs using %{name}.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 autoreconf -vf
 
 %build
