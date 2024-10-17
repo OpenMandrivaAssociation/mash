@@ -10,7 +10,7 @@ Version:	0.2.0
 Release:	9
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://wiki.clutter-project.org/wiki/Mash
+Url:		https://wiki.clutter-project.org/wiki/Mash
 Source0:	http://source.clutter-project.org/sources/mash/0.2/mash-%{version}.tar.xz
 
 # From Fedora:
