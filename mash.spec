@@ -17,6 +17,11 @@ Source0:	http://source.clutter-project.org/sources/mash/0.2/mash-%{version}.tar.
 # Already sent upstream for review,
 # see http://lists.clutter-project.org/pipermail/clutter-devel-list/2011-March/000196.html
 Patch0:		0001-Use-the-system-version-of-rply-if-available.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	rply-devel
 BuildRequires:	pkgconfig(clutter-1.0)
 BuildRequires:	pkgconfig(glib-2.0)
